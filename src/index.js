@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './tailwind.css';
 import * as serviceWorker from './serviceWorker';
+import Myrouter from './router';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Myrouter/>
   </React.StrictMode>,
   document.getElementById('root')
 );
