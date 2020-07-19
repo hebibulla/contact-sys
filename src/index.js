@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './tailwind.css';
 import * as serviceWorker from './serviceWorker';
-import Myrouter from './router';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-      <Myrouter/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

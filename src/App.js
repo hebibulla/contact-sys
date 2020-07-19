@@ -1,15 +1,11 @@
 import React from 'react';
 import './css/App.css';
-import {Link} from 'react-router-dom'
+
+import Content from './components/content';
 function App() {
   return (
-    <div className="App">
-      <Link to="/setting">
-        <button>setting</button>
-      </Link>
-      <Link to="/home">
-        <button>home</button>
-      </Link>
+    <div className="App bg-gray-900 h-screen w-full flex flex-col">
+      <Content/>
     </div>
   );
 }
