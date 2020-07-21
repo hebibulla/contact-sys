@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './tailwind.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import Reducers from './reducers';
+
+const store = createStore(Reducers);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

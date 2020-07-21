@@ -17,12 +17,10 @@ export default function ControlBar() {
                         <span className="-my-1 text-xs">home</span>
                     </button>
                 </Link>
-                <Link to="/setting">
-                    <button className="flex flex-col justify-center items-center">
-                        <i className="fas fa-cog fa-2x"></i>
-                        <span className="-my-1 text-xs">setting</span>
-                    </button>
-                </Link>
+                <button className="flex flex-col justify-center items-center">
+                    <i className="fas fa-cog fa-2x"></i>
+                    <span className="-my-1 text-xs">setting</span>
+                </button>
             </div>
         </div>
     )

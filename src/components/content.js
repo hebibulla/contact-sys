@@ -10,7 +10,7 @@ const customHistory = createBrowserHistory();
 
 export default function Content() {
 
-    const isAuthenticated = false;
+    const isAuthenticated = true;
     const control_bar = isAuthenticated ?  <ControlBar/> : '';
 
     return (
