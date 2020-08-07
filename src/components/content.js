@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Route, Router, Switch, Redirect } from 'react-router-dom'
 import { createBrowserHistory } from "history";
 import Home from '../views/home';
@@ -10,8 +10,24 @@ const customHistory = createBrowserHistory();
 
 export default function Content() {
 
-    const isAuthenticated = true;
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const control_bar = isAuthenticated ?  <ControlBar/> : '';
+
+    function login(){
+        setIsAuthenticated(true);
+    }
+
+    useEffect(() => {
+
+        if(localStorage.getItem('login_status') === 'true'){
+            setIsAuthenticated(true);
+        }
+        
+        if(isAuthenticated === true){
+            localStorage.setItem('login_status','true');
+        }
+
+    }, [isAuthenticated])
 
     return (
         <Router history={customHistory}>
@@ -28,7 +44,7 @@ export default function Content() {
                     {/* <Route path="/signin" component={Login} /> */}
                     <Route exact path="/signin" render={props => isAuthenticated
                         ? (<Redirect to={"/"}/>)
-                        : (<Login {...props}/>)
+                        : (<Login login={ login } {...props}/>)
                     }/>
                 </Switch>
             </div>

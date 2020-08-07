@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 
 
-export default function Login({props}) {
+export default function Login({ login }) {
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    
+
     function formHandler(e){
         e.preventDefault();
         if(email === 'admin@admin.com' && password === 'admin'){
-            // {props}
-            window.location = "/";
+            login();
         }
     }
     
@@ -19,7 +19,6 @@ export default function Login({props}) {
         <div>
         <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-white">
             Sign in to your account
-            {props}
         </h2>
         </div>
         <form className="mt-8" action="#" onSubmit={(e) => formHandler(e)} method="POST">

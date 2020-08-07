@@ -1,26 +1,45 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import {Link} from 'react-router-dom'
+import SideBar from './side-bar';
+import {useTransition, animated} from 'react-spring'
 
-export default function ControlBar() {
+
+export default function ControlBar(props) {
+
+    const [sidebarStatus, setSidebarStatus] = useState(false)
+    function sidebarToggle(){
+        setSidebarStatus(!sidebarStatus);
+    }
+
+
+
     return (
         <div>
+            {/* {transitions.map(({ item, key, props }) => 
+                item && <animated.div key={key} style={props} > */}
+                    <SideBar show={ sidebarStatus } toggleSideBar={sidebarToggle} />
+                {/* </animated.div>
+            )}  */}
             <div className="control-bar bg-white h-16 rounded-t fixed bottom-0 w-full flex flex-row justify-between items-center py-1 px-10">
-                <Link to="/menu">
-                    <button className="flex flex-col justify-center items-center">
+                    <button
+                        onClick={ () => sidebarToggle() } 
+                        className="flex flex-col justify-center items-center">
                         <i className="fas fa-bars fa-2x"></i>
                         <span className="-my-1 text-xs">menu</span>
                     </button>
-                </Link>
                 <Link to="/">
-                    <button className="flex flex-col justify-center items-center">
-                        <i className="fas fa-home fa-2x"></i>
-                        <span className="-my-1 text-xs">home</span>
-                    </button>
+                        <button className="flex flex-col justify-center items-center">
+                            <i className="fas fa-home fa-2x"></i>
+                            <span className="-my-1 text-xs">home</span>
+                        </button>
                 </Link>
-                <button className="flex flex-col justify-center items-center">
-                    <i className="fas fa-cog fa-2x"></i>
-                    <span className="-my-1 text-xs">setting</span>
-                </button>
+                <Link to="/setting">
+                        <button 
+                            className="flex flex-col justify-center items-center">
+                            <i className="fas fa-cog fa-2x"></i>
+                            <span className="-my-1 text-xs">setting</span>
+                        </button>
+                </Link>
             </div>
         </div>
     )
