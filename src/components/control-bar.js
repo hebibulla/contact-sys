@@ -1,7 +1,6 @@
 import React,{ useState } from 'react'
 import {Link} from 'react-router-dom'
 import SideBar from './side-bar';
-import {useTransition, animated} from 'react-spring'
 
 
 export default function ControlBar(props) {
@@ -15,11 +14,7 @@ export default function ControlBar(props) {
 
     return (
         <div>
-            {/* {transitions.map(({ item, key, props }) => 
-                item && <animated.div key={key} style={props} > */}
-                    <SideBar show={ sidebarStatus } toggleSideBar={sidebarToggle} />
-                {/* </animated.div>
-            )}  */}
+            <SideBar show={ sidebarStatus } toggleSideBar={sidebarToggle} />
             <div className="control-bar bg-white h-16 rounded-t fixed bottom-0 w-full flex flex-row justify-between items-center py-1 px-10">
                     <button
                         onClick={ () => sidebarToggle() } 
