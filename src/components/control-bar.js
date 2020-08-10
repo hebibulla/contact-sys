@@ -10,8 +10,6 @@ export default function ControlBar(props) {
         setSidebarStatus(!sidebarStatus);
     }
 
-
-
     return (
         <div>
             <SideBar show={ sidebarStatus } toggleSideBar={sidebarToggle} />
