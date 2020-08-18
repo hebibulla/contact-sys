@@ -3,10 +3,17 @@ import ContactItem from '../components/home/contact-item'
 import ReplayModal from '../components/home/replay-modal'
 import { useState } from 'react'
 import { CSSTransition } from 'react-transition-group';
+import { useTransition } from "react-spring";
 
 export default function Home() {
 
     const [replayModalStatus, setReplayModalStatus] = useState(false)
+
+    const transitions = useTransition(replayModalStatus, null, {
+        from: { opacity: 0  },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 }
+      });
 
     return (
         <div className="home-content p-2">
@@ -33,15 +40,17 @@ export default function Home() {
                         switchReplayModal={ () => setReplayModalStatus(true)}
                     />
                 </div>
-                <button className="text-white" onClick={()=>(setReplayModalStatus(true))}>show modal</button>
-                    <CSSTransition in={replayModalStatus} timeout={300} classNames="fade" unmountOnExit>
-                <React.StrictMode>
-                            <ReplayModal
-                                hideModal={ () =>  setReplayModalStatus(false) } 
-                            />
-                </React.StrictMode>
-                    </CSSTransition>
-
+                {transitions.map(
+                    ({ item, key, props: animation }) =>
+                    item && (
+                        <ReplayModal
+                            style={animation}
+                            show={replayModalStatus}
+                            hideModal={ () =>  setReplayModalStatus(false) } 
+                            key={key}
+                        />
+                    )
+                )} 
             </main>
             
         </div>

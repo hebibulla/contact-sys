@@ -5,7 +5,7 @@ import './css/App.css';
 function App() {
 
   return (
-    <div className="App bg-gray-900 h-screen w-full flex flex-col">
+    <div className="App bg-gray-900 h-screen w-full flex flex-row-reverse">
       <Content/>
     </div>
   );

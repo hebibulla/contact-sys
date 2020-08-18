@@ -23,7 +23,7 @@ export default function ContactItem({ name, date, email, subject, switchReplayMo
 
     function replay(){
 
-        setToggled(false);
+        // setToggled(false);
         return switchReplayModal();
 
     }

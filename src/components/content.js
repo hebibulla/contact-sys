@@ -5,18 +5,22 @@ import Home from '../views/home';
 import Setting from '../views/setting';
 import ControlBar from './control-bar';
 import Login from '../views/login';
+import Navbar from './navbar';
 
 const customHistory = createBrowserHistory();
 
 export default function Content() {
 
+    // sidebar status
+    const [sidebarToggled, setsidebarToggled] = useState(false);
+
+    // auth
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const control_bar = isAuthenticated ?  <ControlBar/> : '';
 
     function login(){
         setIsAuthenticated(true);
     }
-
+    
     useEffect(() => {
 
         if(localStorage.getItem('login_status') === 'true'){
@@ -29,9 +33,14 @@ export default function Content() {
 
     }, [isAuthenticated])
 
+
+
     return (
         <Router history={customHistory}>
             <div className="flex-grow">
+
+                <Navbar toggleSidebar={ () => (setsidebarToggled(!sidebarToggled)) }/>
+
                 <Switch>
                     <Route exact path="/"  render={props => !isAuthenticated
                         ? (<Redirect to={"/signin"}/>)
@@ -48,7 +57,9 @@ export default function Content() {
                     }/>
                 </Switch>
             </div>
-            {control_bar}
+
+            {isAuthenticated ?  <ControlBar PcSidebarStatus={ sidebarToggled } hideSidebar={ () => (setsidebarToggled(false)) } /> : ''}
+
         </Router>
     )
 }
