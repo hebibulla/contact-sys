@@ -9,10 +9,10 @@ import Navbar from './navbar';
 
 const customHistory = createBrowserHistory();
 
-export default function Content() {
+export default function Content({ sidebarToggle }) {
 
     // sidebar status
-    const [sidebarToggled, setsidebarToggled] = useState(false);
+    const [sidebarToggled, setsidebarToggled] = useState(true);
 
     // auth
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -39,23 +39,25 @@ export default function Content() {
         <Router history={customHistory}>
             <div className="flex-grow">
 
-                <Navbar toggleSidebar={ () => (setsidebarToggled(!sidebarToggled)) }/>
+                <Navbar/>
 
-                <Switch>
-                    <Route exact path="/"  render={props => !isAuthenticated
-                        ? (<Redirect to={"/signin"}/>)
-                        : (<Home {...props}/>)
-                    } />
-                    <Route exact path="/setting"  render={props => !isAuthenticated
-                        ? (<Redirect to={"/signin"}/>)
-                        : (<Setting {...props}/>)
-                    } />
-                    {/* <Route path="/signin" component={Login} /> */}
-                    <Route exact path="/signin" render={props => isAuthenticated
-                        ? (<Redirect to={"/"}/>)
-                        : (<Login login={ login } {...props}/>)
-                    }/>
-                </Switch>
+                <div className="p-4">
+                    <Switch>
+                        <Route exact path="/"  render={props => !isAuthenticated
+                            ? (<Redirect to={"/signin"}/>)
+                            : (<Home {...props}/>)
+                        } />
+                        <Route exact path="/setting"  render={props => !isAuthenticated
+                            ? (<Redirect to={"/signin"}/>)
+                            : (<Setting {...props}/>)
+                        } />
+                        {/* <Route path="/signin" component={Login} /> */}
+                        <Route exact path="/signin" render={props => isAuthenticated
+                            ? (<Redirect to={"/"}/>)
+                            : (<Login login={ login } {...props}/>)
+                        }/>
+                    </Switch>
+                </div>
             </div>
 
             {isAuthenticated ?  <ControlBar PcSidebarStatus={ sidebarToggled } hideSidebar={ () => (setsidebarToggled(false)) } /> : ''}

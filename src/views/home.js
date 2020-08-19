@@ -16,7 +16,7 @@ export default function Home() {
       });
 
     return (
-        <div className="home-content p-2">
+        <div className="home-content">
             <div className="title-bar flex justify-between mx-1">
                 <h1 className="text-white text-lg">
                     お問い合わせ一覧

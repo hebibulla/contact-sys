@@ -1,9 +1,14 @@
 import React from 'react'
+import { useContext } from 'react'
+import { sidebarContext } from '../Context/SidebarContext'
 
-export default function Navbar({ toggleSidebar }) {
+export default function Navbar() {
+
+    const { sidebarToggled, setSidebarToggled } = useContext(sidebarContext);
+
     return (
         <div className="h-16 bg-gray-700 shadow-xl px-4 flex items-center border-l border-gray-800">
-            <div onClick={ () => toggleSidebar()} className="toggler">
+            <div onClick={ () => (setSidebarToggled(!sidebarToggled))} className="toggler">
                 <i  className="fas fa-bars fa-lg text-gray-300 cursor-pointer"></i>
             </div>
             <div className="ml-auto user">

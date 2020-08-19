@@ -10,9 +10,9 @@
 .max-h-70-screen{
     max-height: 70vh;
 }
-/* body{
-    position: relative;
-} */
+#root{
+    overflow-x: hidden;
+}
 
 
 
